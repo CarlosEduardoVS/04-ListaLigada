@@ -128,29 +128,99 @@ void inserirElemento()
 	cin >> novo->valor;
 	novo->prox = NULL;
 
-	if (primeiro == NULL)
-	{
-		primeiro = novo;
+	NO* Verificacao = posicaoElemento(novo->valor);
+
+	if (Verificacao != NULL) { //verifica se o elemento ja esta na lista
+
+		cout << "O numero digitado ja esta na lista, retorne e digite um numero novamente. \n";
 	}
-	else
-	{
-		// procura o final da lista
-		NO* aux = primeiro;
-		while (aux->prox != NULL) {
-			aux = aux->prox;
+
+	else {
+
+		if (primeiro == NULL)
+		{
+			primeiro = novo;
 		}
-		aux->prox = novo;
+		else
+		{
+			// procura o final da lista
+			NO* aux = primeiro;
+			while (aux->prox != NULL) {
+				aux = aux->prox;
+			}
+			aux->prox = novo;
+		}
+
 	}
+
+
 }
 
 void excluirElemento()
 {
-	
+	if (primeiro != NULL)
+	{
+		int numeroExcluir;
+		cout << "Insira o elemento a ser excluido: ";
+		cin >> numeroExcluir;
+
+		NO* resultadoBusca = posicaoElemento(numeroExcluir);
+		
+		if (resultadoBusca == NULL) 
+		{
+			cout << "Este numero nao existe na lista. \n";
+		}
+		else
+		{
+			if (resultadoBusca == primeiro)
+			{
+				primeiro = resultadoBusca->prox;
+			}
+			else
+			{
+				NO* ajuda = primeiro;
+				while (ajuda->prox != resultadoBusca) {
+					ajuda = ajuda->prox;
+				}
+				ajuda->prox = resultadoBusca->prox;
+			}
+			free(resultadoBusca);
+			cout << "Excluido com sucesso. \n";
+		}
+
+	}
+	else
+	{
+		cout << "Tem nada \n";
+		return;
+	}
 }
 
 void buscarElemento()
 {
-	
+
+	if (primeiro != NULL )
+	{
+		int numeroBuscar;
+		cout << "Digite um numero para a busca.\n";
+		cin >> numeroBuscar;
+
+		NO* resultadoBusca = posicaoElemento(numeroBuscar);
+
+		if (resultadoBusca == NULL)
+		{
+			cout << "Este numero nao existe na lista.\n";
+		}
+		else
+		{
+			cout << "O Valor digitado foi encontrado: " << resultadoBusca->valor << "\n";
+		}
+	}
+	else
+	{
+		cout << "Tem nada \n";
+		return;
+	}
 }
 
 
