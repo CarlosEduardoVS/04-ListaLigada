@@ -135,7 +135,8 @@ void inserirElemento()
 		cout << "O numero digitado ja esta na lista, retorne e digite um numero novamente. \n";
 	}
 
-	else {
+	else 
+	{
 
 		if (primeiro == NULL)
 		{
